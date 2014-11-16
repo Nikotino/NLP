@@ -1,0 +1,160 @@
+---
+title: "Russian text analysis"
+author: "Veronika Nuretdinova"
+date: "Sunday, November 16, 2014"
+output: html_document
+---
+
+1. Read the file. Since I want to make a few comparisons I will read Russian and Engish files
+
+```{r}
+setwd("~/R files/Natural Language Processing/Coursera-SwiftKey/")
+
+blogs<-readLines(paste0("ru_RU/",list.files("ru_RU/")[1]),encoding='UTF-8')
+blogs_en<-readLines(paste0("en_US/",list.files("en_US/")[1]))
+```
+
+2. Create files samples for quick exploration and load profanity libraries
+```{r}
+sampleblog<- sample(blogs, 5000)
+sampleblog<-gsub("[a-z]","",sampleblog) #exclude latin words from Russian text 
+sampleblog<-paste(sampleblog,collapse=" ") 
+
+sampleblog_en<- sample(blogs_en, 5000)
+sampleblog_en<-paste(sampleblog_en,collapse=" ") 
+
+badwords<-readLines("https://dl.dropboxusercontent.com/u/156838/Spisok/mat-spisok_lt.txt",encoding='UTF-8')
+badwords_en<-readLines("http://www.cs.cmu.edu/~biglou/resources/bad-words.txt")
+```
+
+3. Tokenize the texts, create words summary and n-grams
+In tokenization I do the following cleaning:
+- for unigrams remove words of less than 4 characters as non-informative of the text. For bigrams and trigrams I keep all words, otherwise many expressions would be damaged
+- remove profanity words
+- remove sparse words
+- change all words to lower characters, so that words in the beggining of the sentences wouldnt count as separate words 
+
+```{r}
+library("tm")
+library("RWeka")
+library("reshape2")
+
+document<-Corpus(VectorSource(sampleblog))
+document_en<-Corpus(VectorSource(sampleblog_en))
+
+UnigramTokenizer <- function(x) NGramTokenizer(x, Weka_control(min = 1, max = 1))
+BigramTokenizer <- function(x) NGramTokenizer(x, Weka_control(min = 2, max = 2))
+TrigramTokenizer <- function(x) NGramTokenizer(x, Weka_control(min = 3, max = 3))
+
+unifreq <- TermDocumentMatrix(document, control = list(tokenize = UnigramTokenizer, wordLengths=c(4,Inf),removeSparseTerms=TRUE, stopwords=badwords,tolower = TRUE))                 
+bifreq <- TermDocumentMatrix(document, control = list(tokenize = BigramTokenizer, removeSparseTerms=TRUE, stopwords=badwords,tolower = TRUE))                 
+trifreq <- TermDocumentMatrix(document, control = list(tokenize = TrigramTokenizer, removeSparseTerms=TRUE, stopwords=badwords,tolower = TRUE))
+
+unifreq<-as.matrix(unifreq)
+unifreq = melt(unifreq, value.name = "count")
+unifreq<-aggregate(count~Terms,data=unifreq,FUN="sum")
+unifreq<-unifreq[order(unifreq$count,decreasing=TRUE),]
+
+bifreq<-as.matrix(bifreq)
+bifreq = melt(bifreq, value.name = "count")
+bifreq<-aggregate(count~Terms,data=bifreq,FUN="sum")
+bifreq<-bifreq[order(bifreq$count,decreasing=TRUE),]
+
+trifreq<-as.matrix(trifreq)
+trifreq = melt(trifreq, value.name = "count")
+trifreq<-aggregate(count~Terms,data=trifreq,FUN="sum")
+trifreq<-trifreq[order(trifreq$count,decreasing=TRUE),]
+
+head(unifreq,10)
+head(bifreq,10)
+head(trifreq,10)
+```
+
+4. A few comparison between Russian and English
+
+I do the comparison to check a few hypothesis I have regarding Russian and English:
+- Russian words, on average, are longer than English ones even if we remove articles
+- Russian language is more diverse, ie you would need more words to cover the majority of words in text
+
+##Compare average words length
+```{r}
+#Add summary of English words
+unifreq_en <- TermDocumentMatrix(document_en, control = list(tokenize = UnigramTokenizer, wordLengths=c(4,Inf), removeSparseTerms=TRUE, stopwords=badwords,tolower = TRUE))                 
+unifreq_en<-as.matrix(unifreq_en)
+unifreq_en = melt(unifreq_en, value.name = "count")
+unifreq_en<-aggregate(count~Terms,data=unifreq_en,FUN="sum")
+unifreq_en<-unifreq_en[order(unifreq_en$count,decreasing=TRUE),]
+head(unifreq_en,10)
+
+#Average words length
+unifreq$nchar<-nchar(as.character(unifreq$Terms))
+rus_nchar<-aggregate(count~nchar,data=unifreq,FUN="sum")
+rus_nchar$count<-rus_nchar$count/sum(rus_nchar$count)
+rus_nchar$language<-"rus"
+
+unifreq_en$nchar<-nchar(as.character(unifreq_en$Terms))
+en_nchar<-aggregate(count~nchar,data=unifreq_en,FUN="sum")
+en_nchar$count<-en_nchar$count/sum(en_nchar$count)
+en_nchar$language<-"en"
+nchar<-rbind(rus_nchar,en_nchar)
+
+library("ggplot2")
+
+ggplot(nchar, aes(x=nchar, y=count, colour=language)) + geom_line()
+```
+The plot demonstrates my hypothesis is true.  I can explain the difference by different morfology of languages, ie where in English most words have only root and ending, in Russian majority of words are created through addition of preposition and suffix to the root.
+
+#What's % of words constitutes different % of words used
+```{r}
+sum<-vector()
+sum_en<-vector()
+rus<-vector()
+eng<-vector()
+
+for (i in 1:nrow(unifreq)){
+  sum[i]<-sum(unifreq$count[c(1:i)])}
+
+for (i in 1:nrow(unifreq_en)){
+  sum_en[i]<-sum(unifreq_en$count[c(1:i)])}
+
+for (i in 1:10){
+  rus[i]<-which(sum>=sum(unifreq[,2])*i/10)[1]/nrow(unifreq)
+  eng[i]<-which(sum_en>=sum(unifreq_en[,2])*i/10)[1]/nrow(unifreq_en)
+}
+
+shares <- melt(cbind(rus,eng), id=row.names)
+colnames(shares)<-c("share","language","value")
+shares$share<-shares$share/10
+
+qplot(data=shares,share/10,value,group=language,colour=language,xlab="share of words covered",ylab="top words as share of total words")+geom_line()
+```
+The plot confirms my hypothesis, as we see in Russia much higher share of words would be needed to cover the same % of text. Major explanations would be:
+- in Russian adjectives ending change upon gender and number, while in English it would be the same word in all cases
+- many verbs in English change meaning through additions while verb stays the same, while in Russian through preposition,thus, creating different words (e.g. fall+(about/into/apart/away/back/in) would be all different words in Russian).
+
+##How do you evaluate how many of the words come from foreign languages?
+
+Ideally you would need to load the dictionary of foreign words and do the comparison.  However, for the sake of memory I would use a few simple features of Russian words which come from foreign language:
+
+- words starting with letters "à","ô","ãå","êå","äæ" (^à|^ô|^ãå|^êå|^äæ)
+- words containing syllables "êþ|ïþ|áþ|âþ|êþ|ìþ|àó|àî|åî|åà|åè|èîí" or letter "ý" (exept "ýòîò"/this)
+- words ending with íã|èçì
+- words with double consonants except for double "í" (common in adjectives) and double "c" caused by preposition ("ðàñ|âîñ|ïîä")
+
+```{r}
+foreign<-unifreq[(grep("^à|^ô|^ãå|^êå|^äæ|êþ|ïþ|áþ|âþ|êþ|ìþ|àó|àî|åî|åà|åè|ý[^ýòî][^ýòè]|íã$|èçì$|èîí",unifreq$Terms)),]
+consonant<-strsplit("áâãäæçéêëìíïðñòôõö÷øù",split="")[[1]]
+double<-unifreq[grep(paste(paste(consonant[-11],"+{2}",sep=""),collapse="|"),unifreq$Terms),]
+double<-double[-grep("^ðàñ|^âîñ|^ïîä",double$Terms),]
+foreign<-rbind(foreign,double)
+foreign<-foreign[order(foreign$Terms),]
+foreign<-foreign[unique(foreign$Terms),]
+head(foreign$Terms,10)
+```
+I have done review of "foreign" dataframe to make sure that the majority of words there are words borrowed from foreign language but I do not provide the full list of >2Ks words here.
+
+Overall, I get the estimation of foreign words share of ~9%.  This is in line with general estimation by linguists that the share foreign words in Russian is within 20%.
+
+```{r}
+nrow(foreign)/nrow(unifreq)
+```
