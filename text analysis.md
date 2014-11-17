@@ -3,6 +3,7 @@ title: "Russian text analysis"
 author: "Veronika Nuretdinova"
 date: "Sunday, November 16, 2014"
 output: html_document
+Attention! Rpubs document link: http://rpubs.com/Nikotino/42194
 ---
 
 1. Read the file. Since I want to make a few comparisons between laguages I also add English blogs file. 
@@ -113,16 +114,16 @@ head(unifreq,10)
 
 ```
 ##        Terms count
-## 15006   меня   357
-## 20248  очень   356
-## 32368 только   320
-## 8617    если   316
-## 3458    было   264
-## 8627    есть   256
-## 35534  чтобы   231
-## 15555  можно   230
-## 12263  когда   225
-## 25741 просто   217
+## 15006   Г¬ГҐГ­Гї   357
+## 20248  Г®Г·ГҐГ­Гј   356
+## 32368 ГІГ®Г«ГјГЄГ®   320
+## 8617    ГҐГ±Г«ГЁ   316
+## 3458    ГЎГ»Г«Г®   264
+## 8627    ГҐГ±ГІГј   256
+## 35534  Г·ГІГ®ГЎГ»   231
+## 15555  Г¬Г®Г¦Г­Г®   230
+## 12263  ГЄГ®ГЈГ¤Г    225
+## 25741 ГЇГ°Г®Г±ГІГ®   217
 ```
 
 ```r
@@ -131,16 +132,16 @@ head(bifreq,10)
 
 ```
 ##                 Terms count
-## 102415         у меня   151
-## 35568            и не   124
-## 102424          у нас    98
-## 34375             и в    94
-## 100509         то что    94
-## 70847  пермского края    88
-## 13683          в этом    77
-## 77162      потому что    74
-## 98381         так что    74
-## 101116        том что    71
+## 102415         Гі Г¬ГҐГ­Гї   151
+## 35568            ГЁ Г­ГҐ   124
+## 102424          Гі Г­Г Г±    98
+## 34375             ГЁ Гў    94
+## 100509         ГІГ® Г·ГІГ®    94
+## 70847  ГЇГҐГ°Г¬Г±ГЄГ®ГЈГ® ГЄГ°Г Гї    88
+## 13683          Гў ГЅГІГ®Г¬    77
+## 77162      ГЇГ®ГІГ®Г¬Гі Г·ГІГ®    74
+## 98381         ГІГ ГЄ Г·ГІГ®    74
+## 101116        ГІГ®Г¬ Г·ГІГ®    71
 ```
 
 ```r
@@ -149,16 +150,16 @@ head(trifreq,10)
 
 ```
 ##                     Terms count
-## 76828           о том что    41
-## 45229               и т д    28
-## 32208          до сих пор    26
-## 66787 на следующей неделе    26
-## 17100           в том что    24
-## 16586           в связи с    21
-## 17099         в том числе    20
-## 16771    в соответствии с    19
-## 17521         в этом году    19
-## 31706      для того чтобы    16
+## 76828           Г® ГІГ®Г¬ Г·ГІГ®    41
+## 45229               ГЁ ГІ Г¤    28
+## 32208          Г¤Г® Г±ГЁГµ ГЇГ®Г°    26
+## 66787 Г­Г  Г±Г«ГҐГ¤ГіГѕГ№ГҐГ© Г­ГҐГ¤ГҐГ«ГҐ    26
+## 17100           Гў ГІГ®Г¬ Г·ГІГ®    24
+## 16586           Гў Г±ГўГїГ§ГЁ Г±    21
+## 17099         Гў ГІГ®Г¬ Г·ГЁГ±Г«ГҐ    20
+## 16771    Гў Г±Г®Г®ГІГўГҐГІГ±ГІГўГЁГЁ Г±    19
+## 17521         Гў ГЅГІГ®Г¬ ГЈГ®Г¤Гі    19
+## 31706      Г¤Г«Гї ГІГ®ГЈГ® Г·ГІГ®ГЎГ»    16
 ```
 
 4. A few comparison between Russian and English
@@ -264,17 +265,17 @@ The plot confirms my hypothesis, as we see in Russia much higher share of words 
 
 Ideally you would need to load the dictionary of foreign words and do the comparison.  However, for the sake of memory I would use a few simple features of Russian words which come from foreign language:
 
-- words starting with letters "а","ф","ге","ке","дж" (^а|^ф|^ге|^ке|^дж)
-- words containing syllables "кю|пю|бю|вю|кю|мю|ау|ао|ео|еа|еи|ион" or letter "э" (exept "этот"/this)
-- words ending with нг|изм
-- words with double consonants except for double "н" (common in adjectives) and double "c" caused by preposition ("рас|вос|под")
+- words starting with letters "Г ","Гґ","ГЈГҐ","ГЄГҐ","Г¤Г¦" (^Г |^Гґ|^ГЈГҐ|^ГЄГҐ|^Г¤Г¦)
+- words containing syllables "ГЄГѕ|ГЇГѕ|ГЎГѕ|ГўГѕ|ГЄГѕ|Г¬Гѕ|Г Гі|Г Г®|ГҐГ®|ГҐГ |ГҐГЁ|ГЁГ®Г­" or letter "ГЅ" (exept "ГЅГІГ®ГІ"/this)
+- words ending with Г­ГЈ|ГЁГ§Г¬
+- words with double consonants except for double "Г­" (common in adjectives) and double "c" caused by preposition ("Г°Г Г±|ГўГ®Г±|ГЇГ®Г¤")
 
 
 ```r
-foreign<-unifreq[(grep("^а|^ф|^ге|^ке|^дж|кю|пю|бю|вю|кю|мю|ау|ао|ео|еа|еи|э[^это][^эти]|нг$|изм$|ион",unifreq$Terms)),]
-consonant<-strsplit("бвгджзйклмнпрстфхцчшщ",split="")[[1]]
+foreign<-unifreq[(grep("^Г |^Гґ|^ГЈГҐ|^ГЄГҐ|^Г¤Г¦|ГЄГѕ|ГЇГѕ|ГЎГѕ|ГўГѕ|ГЄГѕ|Г¬Гѕ|Г Гі|Г Г®|ГҐГ®|ГҐГ |ГҐГЁ|ГЅ[^ГЅГІГ®][^ГЅГІГЁ]|Г­ГЈ$|ГЁГ§Г¬$|ГЁГ®Г­",unifreq$Terms)),]
+consonant<-strsplit("ГЎГўГЈГ¤Г¦Г§Г©ГЄГ«Г¬Г­ГЇГ°Г±ГІГґГµГ¶Г·ГёГ№",split="")[[1]]
 double<-unifreq[grep(paste(paste(consonant[-11],"+{2}",sep=""),collapse="|"),unifreq$Terms),]
-double<-double[-grep("^рас|^вос|^под",double$Terms),]
+double<-double[-grep("^Г°Г Г±|^ГўГ®Г±|^ГЇГ®Г¤",double$Terms),]
 foreign<-rbind(foreign,double)
 foreign<-foreign[order(foreign$Terms),]
 foreign<-foreign[unique(foreign$Terms),]
@@ -282,11 +283,11 @@ head(foreign$Terms,10)
 ```
 
 ```
-##  [1] “ацк-бюджетный      “электронное        «планово-бюджетный»
-##  [4] «тиффани»           61-миллиардного     а50-17638/2011     
-##  [7] аааааааа            абсолютным          авианосных         
-## [10] авианосцев         
-## 36536 Levels: -«давно -132 -20% -2011 -4031 -№33 -аттестовать -бам ... ящику
+##  [1] В“Г Г¶ГЄ-ГЎГѕГ¤Г¦ГҐГІГ­Г»Г©      В“ГЅГ«ГҐГЄГІГ°Г®Г­Г­Г®ГҐ        В«ГЇГ«Г Г­Г®ГўГ®-ГЎГѕГ¤Г¦ГҐГІГ­Г»Г©В»
+##  [4] В«ГІГЁГґГґГ Г­ГЁВ»           61-Г¬ГЁГ«Г«ГЁГ Г°Г¤Г­Г®ГЈГ®     Г 50-17638/2011     
+##  [7] Г Г Г Г Г Г Г Г             Г ГЎГ±Г®Г«ГѕГІГ­Г»Г¬          Г ГўГЁГ Г­Г®Г±Г­Г»Гµ         
+## [10] Г ГўГЁГ Г­Г®Г±Г¶ГҐГў         
+## 36536 Levels: -В«Г¤Г ГўГ­Г® -132 -20% -2011 -4031 -В№33 -Г ГІГІГҐГ±ГІГ®ГўГ ГІГј -ГЎГ Г¬ ... ГїГ№ГЁГЄГі
 ```
 I have done review of "foreign" dataframe to make sure that the majority of words there are words borrowed from foreign language but I do not provide the full list of >2Ks words here.
 
