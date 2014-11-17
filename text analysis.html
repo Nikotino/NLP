@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+<title></title>
+
+<!-- Styles for R syntax highlighter -->
+<style type="text/css">
+   pre .operator,
+   pre .paren {
+     color: rgb(104, 118, 135)
+   }
+
+   pre .literal {
+     color: #990073
+   }
+
+   pre .number {
+     color: #099;
+   }
+
+   pre .comment {
+     color: #998;
+     font-style: italic
+   }
+
+   pre .keyword {
+     color: #900;
+     font-weight: bold
+   }
+
+   pre .identifier {
+     color: rgb(0, 0, 0);
+   }
+
+   pre .string {
+     color: #d14;
+   }
+</style>
+
+<!-- R syntax highlighter -->
+<script type="text/javascript">
+var hljs=new function(){function m(p){return p.replace(/&/gm,"&amp;").replace(/</gm,"&lt;")}function f(r,q,p){return RegExp(q,"m"+(r.cI?"i":"")+(p?"g":""))}function b(r){for(var p=0;p<r.childNodes.length;p++){var q=r.childNodes[p];if(q.nodeName=="CODE"){return q}if(!(q.nodeType==3&&q.nodeValue.match(/\s+/))){break}}}function h(t,s){var p="";for(var r=0;r<t.childNodes.length;r++){if(t.childNodes[r].nodeType==3){var q=t.childNodes[r].nodeValue;if(s){q=q.replace(/\n/g,"")}p+=q}else{if(t.childNodes[r].nodeName=="BR"){p+="\n"}else{p+=h(t.childNodes[r])}}}if(/MSIE [678]/.test(navigator.userAgent)){p=p.replace(/\r/g,"\n")}return p}function a(s){var r=s.className.split(/\s+/);r=r.concat(s.parentNode.className.split(/\s+/));for(var q=0;q<r.length;q++){var p=r[q].replace(/^language-/,"");if(e[p]){return p}}}function c(q){var p=[];(function(s,t){for(var r=0;r<s.childNodes.length;r++){if(s.childNodes[r].nodeType==3){t+=s.childNodes[r].nodeValue.length}else{if(s.childNodes[r].nodeName=="BR"){t+=1}else{if(s.childNodes[r].nodeType==1){p.push({event:"start",offset:t,node:s.childNodes[r]});t=arguments.callee(s.childNodes[r],t);p.push({event:"stop",offset:t,node:s.childNodes[r]})}}}}return t})(q,0);return p}function k(y,w,x){var q=0;var z="";var s=[];function u(){if(y.length&&w.length){if(y[0].offset!=w[0].offset){return(y[0].offset<w[0].offset)?y:w}else{return w[0].event=="start"?y:w}}else{return y.length?y:w}}function t(D){var A="<"+D.nodeName.toLowerCase();for(var B=0;B<D.attributes.length;B++){var C=D.attributes[B];A+=" "+C.nodeName.toLowerCase();if(C.value!==undefined&&C.value!==false&&C.value!==null){A+='="'+m(C.value)+'"'}}return A+">"}while(y.length||w.length){var v=u().splice(0,1)[0];z+=m(x.substr(q,v.offset-q));q=v.offset;if(v.event=="start"){z+=t(v.node);s.push(v.node)}else{if(v.event=="stop"){var p,r=s.length;do{r--;p=s[r];z+=("</"+p.nodeName.toLowerCase()+">")}while(p!=v.node);s.splice(r,1);while(r<s.length){z+=t(s[r]);r++}}}}return z+m(x.substr(q))}function j(){function q(x,y,v){if(x.compiled){return}var u;var s=[];if(x.k){x.lR=f(y,x.l||hljs.IR,true);for(var w in x.k){if(!x.k.hasOwnProperty(w)){continue}if(x.k[w] instanceof Object){u=x.k[w]}else{u=x.k;w="keyword"}for(var r in u){if(!u.hasOwnProperty(r)){continue}x.k[r]=[w,u[r]];s.push(r)}}}if(!v){if(x.bWK){x.b="\\b("+s.join("|")+")\\s"}x.bR=f(y,x.b?x.b:"\\B|\\b");if(!x.e&&!x.eW){x.e="\\B|\\b"}if(x.e){x.eR=f(y,x.e)}}if(x.i){x.iR=f(y,x.i)}if(x.r===undefined){x.r=1}if(!x.c){x.c=[]}x.compiled=true;for(var t=0;t<x.c.length;t++){if(x.c[t]=="self"){x.c[t]=x}q(x.c[t],y,false)}if(x.starts){q(x.starts,y,false)}}for(var p in e){if(!e.hasOwnProperty(p)){continue}q(e[p].dM,e[p],true)}}function d(B,C){if(!j.called){j();j.called=true}function q(r,M){for(var L=0;L<M.c.length;L++){if((M.c[L].bR.exec(r)||[null])[0]==r){return M.c[L]}}}function v(L,r){if(D[L].e&&D[L].eR.test(r)){return 1}if(D[L].eW){var M=v(L-1,r);return M?M+1:0}return 0}function w(r,L){return L.i&&L.iR.test(r)}function K(N,O){var M=[];for(var L=0;L<N.c.length;L++){M.push(N.c[L].b)}var r=D.length-1;do{if(D[r].e){M.push(D[r].e)}r--}while(D[r+1].eW);if(N.i){M.push(N.i)}return f(O,M.join("|"),true)}function p(M,L){var N=D[D.length-1];if(!N.t){N.t=K(N,E)}N.t.lastIndex=L;var r=N.t.exec(M);return r?[M.substr(L,r.index-L),r[0],false]:[M.substr(L),"",true]}function z(N,r){var L=E.cI?r[0].toLowerCase():r[0];var M=N.k[L];if(M&&M instanceof Array){return M}return false}function F(L,P){L=m(L);if(!P.k){return L}var r="";var O=0;P.lR.lastIndex=0;var M=P.lR.exec(L);while(M){r+=L.substr(O,M.index-O);var N=z(P,M);if(N){x+=N[1];r+='<span class="'+N[0]+'">'+M[0]+"</span>"}else{r+=M[0]}O=P.lR.lastIndex;M=P.lR.exec(L)}return r+L.substr(O,L.length-O)}function J(L,M){if(M.sL&&e[M.sL]){var r=d(M.sL,L);x+=r.keyword_count;return r.value}else{return F(L,M)}}function I(M,r){var L=M.cN?'<span class="'+M.cN+'">':"";if(M.rB){y+=L;M.buffer=""}else{if(M.eB){y+=m(r)+L;M.buffer=""}else{y+=L;M.buffer=r}}D.push(M);A+=M.r}function G(N,M,Q){var R=D[D.length-1];if(Q){y+=J(R.buffer+N,R);return false}var P=q(M,R);if(P){y+=J(R.buffer+N,R);I(P,M);return P.rB}var L=v(D.length-1,M);if(L){var O=R.cN?"</span>":"";if(R.rE){y+=J(R.buffer+N,R)+O}else{if(R.eE){y+=J(R.buffer+N,R)+O+m(M)}else{y+=J(R.buffer+N+M,R)+O}}while(L>1){O=D[D.length-2].cN?"</span>":"";y+=O;L--;D.length--}var r=D[D.length-1];D.length--;D[D.length-1].buffer="";if(r.starts){I(r.starts,"")}return R.rE}if(w(M,R)){throw"Illegal"}}var E=e[B];var D=[E.dM];var A=0;var x=0;var y="";try{var s,u=0;E.dM.buffer="";do{s=p(C,u);var t=G(s[0],s[1],s[2]);u+=s[0].length;if(!t){u+=s[1].length}}while(!s[2]);if(D.length>1){throw"Illegal"}return{r:A,keyword_count:x,value:y}}catch(H){if(H=="Illegal"){return{r:0,keyword_count:0,value:m(C)}}else{throw H}}}function g(t){var p={keyword_count:0,r:0,value:m(t)};var r=p;for(var q in e){if(!e.hasOwnProperty(q)){continue}var s=d(q,t);s.language=q;if(s.keyword_count+s.r>r.keyword_count+r.r){r=s}if(s.keyword_count+s.r>p.keyword_count+p.r){r=p;p=s}}if(r.language){p.second_best=r}return p}function i(r,q,p){if(q){r=r.replace(/^((<[^>]+>|\t)+)/gm,function(t,w,v,u){return w.replace(/\t/g,q)})}if(p){r=r.replace(/\n/g,"<br>")}return r}function n(t,w,r){var x=h(t,r);var v=a(t);var y,s;if(v){y=d(v,x)}else{return}var q=c(t);if(q.length){s=document.createElement("pre");s.innerHTML=y.value;y.value=k(q,c(s),x)}y.value=i(y.value,w,r);var u=t.className;if(!u.match("(\\s|^)(language-)?"+v+"(\\s|$)")){u=u?(u+" "+v):v}if(/MSIE [678]/.test(navigator.userAgent)&&t.tagName=="CODE"&&t.parentNode.tagName=="PRE"){s=t.parentNode;var p=document.createElement("div");p.innerHTML="<pre><code>"+y.value+"</code></pre>";t=p.firstChild.firstChild;p.firstChild.cN=s.cN;s.parentNode.replaceChild(p.firstChild,s)}else{t.innerHTML=y.value}t.className=u;t.result={language:v,kw:y.keyword_count,re:y.r};if(y.second_best){t.second_best={language:y.second_best.language,kw:y.second_best.keyword_count,re:y.second_best.r}}}function o(){if(o.called){return}o.called=true;var r=document.getElementsByTagName("pre");for(var p=0;p<r.length;p++){var q=b(r[p]);if(q){n(q,hljs.tabReplace)}}}function l(){if(window.addEventListener){window.addEventListener("DOMContentLoaded",o,false);window.addEventListener("load",o,false)}else{if(window.attachEvent){window.attachEvent("onload",o)}else{window.onload=o}}}var e={};this.LANGUAGES=e;this.highlight=d;this.highlightAuto=g;this.fixMarkup=i;this.highlightBlock=n;this.initHighlighting=o;this.initHighlightingOnLoad=l;this.IR="[a-zA-Z][a-zA-Z0-9_]*";this.UIR="[a-zA-Z_][a-zA-Z0-9_]*";this.NR="\\b\\d+(\\.\\d+)?";this.CNR="\\b(0[xX][a-fA-F0-9]+|(\\d+(\\.\\d*)?|\\.\\d+)([eE][-+]?\\d+)?)";this.BNR="\\b(0b[01]+)";this.RSR="!|!=|!==|%|%=|&|&&|&=|\\*|\\*=|\\+|\\+=|,|\\.|-|-=|/|/=|:|;|<|<<|<<=|<=|=|==|===|>|>=|>>|>>=|>>>|>>>=|\\?|\\[|\\{|\\(|\\^|\\^=|\\||\\|=|\\|\\||~";this.ER="(?![\\s\\S])";this.BE={b:"\\\\.",r:0};this.ASM={cN:"string",b:"'",e:"'",i:"\\n",c:[this.BE],r:0};this.QSM={cN:"string",b:'"',e:'"',i:"\\n",c:[this.BE],r:0};this.CLCM={cN:"comment",b:"//",e:"$"};this.CBLCLM={cN:"comment",b:"/\\*",e:"\\*/"};this.HCM={cN:"comment",b:"#",e:"$"};this.NM={cN:"number",b:this.NR,r:0};this.CNM={cN:"number",b:this.CNR,r:0};this.BNM={cN:"number",b:this.BNR,r:0};this.inherit=function(r,s){var p={};for(var q in r){p[q]=r[q]}if(s){for(var q in s){p[q]=s[q]}}return p}}();hljs.LANGUAGES.cpp=function(){var a={keyword:{"false":1,"int":1,"float":1,"while":1,"private":1,"char":1,"catch":1,"export":1,virtual:1,operator:2,sizeof:2,dynamic_cast:2,typedef:2,const_cast:2,"const":1,struct:1,"for":1,static_cast:2,union:1,namespace:1,unsigned:1,"long":1,"throw":1,"volatile":2,"static":1,"protected":1,bool:1,template:1,mutable:1,"if":1,"public":1,friend:2,"do":1,"return":1,"goto":1,auto:1,"void":2,"enum":1,"else":1,"break":1,"new":1,extern:1,using:1,"true":1,"class":1,asm:1,"case":1,typeid:1,"short":1,reinterpret_cast:2,"default":1,"double":1,register:1,explicit:1,signed:1,typename:1,"try":1,"this":1,"switch":1,"continue":1,wchar_t:1,inline:1,"delete":1,alignof:1,char16_t:1,char32_t:1,constexpr:1,decltype:1,noexcept:1,nullptr:1,static_assert:1,thread_local:1,restrict:1,_Bool:1,complex:1},built_in:{std:1,string:1,cin:1,cout:1,cerr:1,clog:1,stringstream:1,istringstream:1,ostringstream:1,auto_ptr:1,deque:1,list:1,queue:1,stack:1,vector:1,map:1,set:1,bitset:1,multiset:1,multimap:1,unordered_set:1,unordered_map:1,unordered_multiset:1,unordered_multimap:1,array:1,shared_ptr:1}};return{dM:{k:a,i:"</",c:[hljs.CLCM,hljs.CBLCLM,hljs.QSM,{cN:"string",b:"'\\\\?.",e:"'",i:"."},{cN:"number",b:"\\b(\\d+(\\.\\d*)?|\\.\\d+)(u|U|l|L|ul|UL|f|F)"},hljs.CNM,{cN:"preprocessor",b:"#",e:"$"},{cN:"stl_container",b:"\\b(deque|list|queue|stack|vector|map|set|bitset|multiset|multimap|unordered_map|unordered_set|unordered_multiset|unordered_multimap|array)\\s*<",e:">",k:a,r:10,c:["self"]}]}}}();hljs.LANGUAGES.r={dM:{c:[hljs.HCM,{cN:"number",b:"\\b0[xX][0-9a-fA-F]+[Li]?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+(?:[eE][+\\-]?\\d*)?L\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+\\.(?!\\d)(?:i\\b)?",e:hljs.IMMEDIATE_RE,r:1},{cN:"number",b:"\\b\\d+(?:\\.\\d*)?(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\.\\d+(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"keyword",b:"(?:tryCatch|library|setGeneric|setGroupGeneric)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\.",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\d+(?![\\w.])",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\b(?:function)",e:hljs.IMMEDIATE_RE,r:2},{cN:"keyword",b:"(?:if|in|break|next|repeat|else|for|return|switch|while|try|stop|warning|require|attach|detach|source|setMethod|setClass)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"literal",b:"(?:NA|NA_integer_|NA_real_|NA_character_|NA_complex_)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"literal",b:"(?:NULL|TRUE|FALSE|T|F|Inf|NaN)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"identifier",b:"[a-zA-Z.][a-zA-Z0-9._]*\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"<\\-(?!\\s*\\d)",e:hljs.IMMEDIATE_RE,r:2},{cN:"operator",b:"\\->|<\\-",e:hljs.IMMEDIATE_RE,r:1},{cN:"operator",b:"%%|~",e:hljs.IMMEDIATE_RE},{cN:"operator",b:">=|<=|==|!=|\\|\\||&&|=|\\+|\\-|\\*|/|\\^|>|<|!|&|\\||\\$|:",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"%",e:"%",i:"\\n",r:1},{cN:"identifier",b:"`",e:"`",r:0},{cN:"string",b:'"',e:'"',c:[hljs.BE],r:0},{cN:"string",b:"'",e:"'",c:[hljs.BE],r:0},{cN:"paren",b:"[[({\\])}]",e:hljs.IMMEDIATE_RE,r:0}]}};
+hljs.initHighlightingOnLoad();
+</script>
+
+<!-- MathJax scripts -->
+<script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 13px;
+}
+
+body {
+  max-width: 800px;
+  margin: auto;
+  padding: 1em;
+  line-height: 20px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 {
+   font-size:2.2em;
+}
+
+h2 {
+   font-size:1.8em;
+}
+
+h3 {
+   font-size:1.4em;
+}
+
+h4 {
+   font-size:1.0em;
+}
+
+h5 {
+   font-size:0.9em;
+}
+
+h6 {
+   font-size:0.8em;
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre, img {
+  max-width: 100%;
+}
+
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code {
+  font-size: 92%;
+  border: 1px solid #ccc;
+}
+
+code[class] {
+  background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * {
+      background: transparent !important;
+      color: black !important;
+      filter:none !important;
+      -ms-filter: none !important;
+   }
+
+   body {
+      font-size:12pt;
+      max-width:100%;
+   }
+
+   a, a:visited {
+      text-decoration: underline;
+   }
+
+   hr {
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote {
+      padding-right: 1em;
+      page-break-inside: avoid;
+   }
+
+   tr, img {
+      page-break-inside: avoid;
+   }
+
+   img {
+      max-width: 100% !important;
+   }
+
+   @page :left {
+      margin: 15mm 20mm 15mm 10mm;
+   }
+
+   @page :right {
+      margin: 15mm 10mm 15mm 20mm;
+   }
+
+   p, h2, h3 {
+      orphans: 3; widows: 3;
+   }
+
+   h2, h3 {
+      page-break-after: avoid;
+   }
+}
+</style>
+
+
+
+</head>
+
+<body>
+<ol>
+<li>Read the file. Since I want to make a few comparisons I will read Russian and Engish files</li>
+</ol>
+
+<pre><code class="r">setwd(&quot;~/R files/Natural Language Processing/Coursera-SwiftKey&quot;)
+
+blogs&lt;-readLines(&quot;./ru_RU/ru_RU.blogs.txt&quot;,encoding=&#39;UTF-8&#39;)
+blogs_en&lt;-readLines(&quot;./en_US/en_US.blogs.txt&quot;)
+</code></pre>
+
+<ol>
+<li>Create files samples for quick exploration and load profanity libraries</li>
+</ol>
+
+<pre><code class="r">sampleblog&lt;- sample(blogs, 5000)
+sampleblog&lt;-gsub(&quot;[a-z]&quot;,&quot;&quot;,sampleblog) #exclude latin words from Russian text 
+sampleblog&lt;-paste(sampleblog,collapse=&quot; &quot;) 
+
+sampleblog_en&lt;- sample(blogs_en, 5000)
+sampleblog_en&lt;-paste(sampleblog_en,collapse=&quot; &quot;) 
+
+badwords&lt;-readLines(&quot;https://dl.dropboxusercontent.com/u/156838/Spisok/mat-spisok_lt.txt&quot;,encoding=&#39;UTF-8&#39;)
+badwords_en&lt;-readLines(&quot;http://www.cs.cmu.edu/~biglou/resources/bad-words.txt&quot;)
+</code></pre>
+
+<ol>
+<li>Tokenize the texts, create words summary and n-grams
+In tokenization I do the following cleaning:</li>
+<li>for unigrams remove words of less than 4 characters as non-informative of the text. For bigrams and trigrams I keep all words, otherwise many expressions would be damaged</li>
+<li>remove profanity words</li>
+<li>remove sparse words</li>
+<li>change all words to lower characters, so that words in the beggining of the sentences wouldnt count as separate words </li>
+</ol>
+
+<pre><code class="r">library(&quot;tm&quot;)
+library(&quot;RWeka&quot;)
+library(&quot;reshape2&quot;)
+
+document&lt;-Corpus(VectorSource(sampleblog))
+document_en&lt;-Corpus(VectorSource(sampleblog_en))
+
+UnigramTokenizer &lt;- function(x) NGramTokenizer(x, Weka_control(min = 1, max = 1))
+BigramTokenizer &lt;- function(x) NGramTokenizer(x, Weka_control(min = 2, max = 2))
+TrigramTokenizer &lt;- function(x) NGramTokenizer(x, Weka_control(min = 3, max = 3))
+
+unifreq &lt;- TermDocumentMatrix(document, control = list(tokenize = UnigramTokenizer, wordLengths=c(4,Inf),removeSparseTerms=TRUE, stopwords=badwords,tolower = TRUE))                 
+bifreq &lt;- TermDocumentMatrix(document, control = list(tokenize = BigramTokenizer, removeSparseTerms=TRUE, stopwords=badwords,tolower = TRUE))                 
+trifreq &lt;- TermDocumentMatrix(document, control = list(tokenize = TrigramTokenizer, removeSparseTerms=TRUE, stopwords=badwords,tolower = TRUE))
+
+unifreq&lt;-as.matrix(unifreq)
+unifreq = melt(unifreq, value.name = &quot;count&quot;)
+unifreq&lt;-aggregate(count~Terms,data=unifreq,FUN=&quot;sum&quot;)
+unifreq&lt;-unifreq[order(unifreq$count,decreasing=TRUE),]
+
+bifreq&lt;-as.matrix(bifreq)
+bifreq = melt(bifreq, value.name = &quot;count&quot;)
+bifreq&lt;-aggregate(count~Terms,data=bifreq,FUN=&quot;sum&quot;)
+bifreq&lt;-bifreq[order(bifreq$count,decreasing=TRUE),]
+
+trifreq&lt;-as.matrix(trifreq)
+trifreq = melt(trifreq, value.name = &quot;count&quot;)
+trifreq&lt;-aggregate(count~Terms,data=trifreq,FUN=&quot;sum&quot;)
+trifreq&lt;-trifreq[order(trifreq$count,decreasing=TRUE),]
+
+head(unifreq,10)
+</code></pre>
+
+<pre><code>##        Terms count
+## 14912   меня   377
+## 20294  очень   373
+## 32410 только   320
+## 3368    было   317
+## 8558    если   303
+## 8569    есть   276
+## 3232   будет   266
+## 15453  можно   251
+## 12227  когда   249
+## 35656  чтобы   237
+</code></pre>
+
+<pre><code class="r">head(bifreq,10)
+</code></pre>
+
+<pre><code>##                 Terms count
+## 104710         у меня   167
+## 36285            и не   137
+## 35040             и в   107
+## 78965      потому что   107
+## 115508           я не   101
+## 102850         то что    88
+## 104722          у нас    82
+## 103423        том что    80
+## 13761          в этом    79
+## 72467  пермского края    72
+</code></pre>
+
+<pre><code class="r">head(trifreq,10)
+</code></pre>
+
+<pre><code>##                  Terms count
+## 78975        о том что    49
+## 46386            и т д    29
+## 17038 в соответствии с    26
+## 17388        в том что    24
+## 16851        в связи с    22
+## 32979       до сих пор    22
+## 68440    на самом деле    21
+## 46387            и т п    19
+## 51688        к тому же    18
+## 32506   для того чтобы    16
+</code></pre>
+
+<ol>
+<li>A few comparison between Russian and English</li>
+</ol>
+
+<p>I do the comparison to check a few hypothesis I have regarding Russian and English:</p>
+
+<ul>
+<li>Russian words, on average, are longer than English ones even if we remove articles</li>
+<li>Russian language is more diverse, ie you would need more words to cover the majority of words in text</li>
+</ul>
+
+<p>##Compare average words length</p>
+
+<pre><code class="r">#Add summary of English words
+unifreq_en &lt;- TermDocumentMatrix(document_en, control = list(tokenize = UnigramTokenizer, wordLengths=c(4,Inf), removeSparseTerms=TRUE, stopwords=badwords,tolower = TRUE))                 
+unifreq_en&lt;-as.matrix(unifreq_en)
+unifreq_en = melt(unifreq_en, value.name = &quot;count&quot;)
+unifreq_en&lt;-aggregate(count~Terms,data=unifreq_en,FUN=&quot;sum&quot;)
+unifreq_en&lt;-unifreq_en[order(unifreq_en$count,decreasing=TRUE),]
+head(unifreq_en,10)
+</code></pre>
+
+<pre><code>##       Terms count
+## 18274  that  2581
+## 20082  with  1540
+## 18366  this  1491
+## 8502   have  1177
+## 7515   from   819
+## 18332  they   798
+## 19908  what   625
+## 20017  will   607
+## 19916  when   603
+## 464   about   594
+</code></pre>
+
+<pre><code class="r">#Average words length
+unifreq$nchar&lt;-nchar(as.character(unifreq$Terms))
+rus_nchar&lt;-aggregate(count~nchar,data=unifreq,FUN=&quot;sum&quot;)
+rus_nchar$count&lt;-rus_nchar$count/sum(rus_nchar$count)
+rus_nchar$language&lt;-&quot;rus&quot;
+
+unifreq_en$nchar&lt;-nchar(as.character(unifreq_en$Terms))
+en_nchar&lt;-aggregate(count~nchar,data=unifreq_en,FUN=&quot;sum&quot;)
+en_nchar$count&lt;-en_nchar$count/sum(en_nchar$count)
+en_nchar$language&lt;-&quot;en&quot;
+nchar&lt;-rbind(rus_nchar,en_nchar)
+
+library(&quot;ggplot2&quot;)
+
+ggplot(nchar, aes(x=nchar, y=count, colour=language)) + geom_line()
+</code></pre>
+
+<p><img src="data:image/png;base64,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" alt="plot of chunk unnamed-chunk-4"/> 
+The plot demonstrates my hypothesis is true.  I can explain the difference by different morfology of languages, ie where in English most words have only root and ending, in Russian majority of words are created through addition of preposition and suffix to the root.</p>
+
+<p>#What&#39;s % of words constitutes different % of words used</p>
+
+<pre><code class="r">sum&lt;-vector()
+sum_en&lt;-vector()
+rus&lt;-vector()
+eng&lt;-vector()
+
+for (i in 1:nrow(unifreq)){
+  sum[i]&lt;-sum(unifreq$count[c(1:i)])}
+
+for (i in 1:nrow(unifreq_en)){
+  sum_en[i]&lt;-sum(unifreq_en$count[c(1:i)])}
+
+for (i in 1:10){
+  rus[i]&lt;-which(sum&gt;=sum(unifreq[,2])*i/10)[1]/nrow(unifreq)
+  eng[i]&lt;-which(sum_en&gt;=sum(unifreq_en[,2])*i/10)[1]/nrow(unifreq_en)
+}
+
+shares &lt;- melt(cbind(rus,eng), id=row.names)
+colnames(shares)&lt;-c(&quot;share&quot;,&quot;language&quot;,&quot;value&quot;)
+shares$share&lt;-shares$share/10
+
+qplot(data=shares,share/10,value,group=language,colour=language,xlab=&quot;share of words covered&quot;,ylab=&quot;top words as share of total words&quot;)+geom_line()
+</code></pre>
+
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfgAAAH4CAMAAACR9g9NAAAA4VBMVEUAAAAAADoAAGYAOjoAOmYAOpAAZmYAZrYAv8Q6AAA6ADo6AGY6Ojo6OmY6OpA6ZrY6kNtmAABmADpmAGZmOgBmZgBmZjpmkJBmtv9/f39/f5V/f6t/lcF/q9aQOgCQOjqQkGaQtpCQ2/+Vf3+Vq9aVweurf6urlZWrlcGr1v+2ZgC2Zjq225C2/7a2///BlX/BlZXBlavBq8HBwdbB6//Wq3/Wq5XW///bkDrb29vb/7bb/9vb///l5eXrwZXr///y8vL4dm3/tmb/1qv/25D/68H//7b//9b//9v//+v///+5LkV2AAAACXBIWXMAAAsSAAALEgHS3X78AAAXs0lEQVR4nO2dC3vbxpWGZW+9hpOua8e9iL7ErVI5ltIocStF3K1sGZKqC///D1oMMCRBAnPmDHgGmMv3PYpEgtQbHL8aDAhgBnsLJMvsTb0CyDSB+EwD8ZkG4jMNxGcaiM80EJ9pID7TQHymgfhMA/GZBuIzDcRnmkHiPxvz1fxSTwgQ2KsFfgLxobOljetAfOhsaeM6EB86W9q4DsSHzpY2rgPxobOljetAfOhsaeM6EB86W9q4DsSHzpY2rgPxobOljetAfOhsaeM6EB86W9q4DsSHzpY2rgPxobOljetAfOhsaeM6EB86W9q4DsSHzpY2rgPxobOljesQ4u8+nNc/z2avT5ffId4zuyg6/7OxxV/P3tTir99err4g3jO7KDrmxxb/8K+HT7X4L4eq7Tffq6ezKp7WBVko8eP8n4hN/VL8kXrUfNevyPx1x9oqU9/UL/pbPMR7ZZfhiEcfPyY7FPF3Hy+xVz8muwjg45w5QkXGKscju4T4PNkQnykb4vNkl+jj82RDfKbs6sMcxGfIrho8xOfIhvhM2RCfJ7v8DPFZsiE+T3btHeLzY0N8pmyIz5NdeYf4HNkQnykb4vNka+8Qnxsb4jNlQ3yebOUd4jNkQ3ymbIjPk73yDvF5sSGeSMpsiCeSMLv2DvH5sSGeSsJsiKeSLrvxDvHZsVsNHuJzYkM8mWTZ7S09xGfEhng6ybIhnk6qbO0d4nNjbzR4iM+GvdngIT4bNsTbkigb4m1Jk730DvGZsSHemjTZW1t6iM+Evd3gIT4TNsTbkyQb4u1Jkb3yHof4r0IRA0XLLlePChNb2rgOWvyk7M6WPuwWP6zIbuKQ45Hd3dJDfBZsiOckQTbEc5Iee+0d4omkx4Z4VtJjQzwrybH7vEN8BmyI5yU5NsTzkhq75R3iqaTGhnhmUmNDPDOJsfu9Q3zybIjnJi122zvEk0mLDfHspMWGeHaSYm94h3gySbFNDR7iE2dDPD8psY1beohPmw3xDkmJDfEOSYi96R3i6STENjd4iE+aDfEuSYdNbOkhPmU2xDu9Ox02xDu9Oxn2lneItyQZNtXgIT5hNsQHLMcjm9zSQ3y6bIgPWI5PNsQHLMcje9s7xNuSCBviA5bjk01v6SE+VbalwUN8qmyI7yuSTBLsjneItyYJNsT3FkkmCTbE9xZJJgW21TvEp8mG+P4iyaTAhvj+IskkwO56D1D82ez1qfr5ZVblsHqqn0N82uKv315WX83jh39ePvx6un6NVSQjQcrxyY5B/JfDxd2H8+bxb6eLux9/mL1Tj1X797QuyafsLirGX4smZvFHi4dPjfjryvj1m3O1qAnrr5uRIFulRzajwQfV4n/TW/nrQ4jfgV2WUYhf9/F3Hy8b6Wjxu7DLSMQ3e/VK+n/+3jydLRs8xA9hRyOeiLVIZoKT45Xd5x3iGYmdzfIO8emxId5cJJnY2RBvLpJM5Ow+7xDPSeRsiCeKJBM5G+KJIsnEzWZ6h/jU2IGLnz+5mO/t7UO8ODts8bffHVRfN9+eQLwwu9d7QOJfnVRtHuLl2YGLX8z3Hh1cYVMvzu73HpB4Xugi+QlLjk82xNNFkomZzd7STyL+9uVek8fo42XZ/AY/VYs/flF9mz+1/BJZpEOCkuOTHbz4aq9+9R3i5djBi7//vm7xTy4gXpJt8B6Q+Mp81cXbtvQQ78iOQDwvVJEuCUmOT7bDln7SPt4aqkiXhCTHI9ulwU/Vx78/4PwSUaTTP0lAcnyyIxCvP8njc7woOwLxzBBFOv2TBCTHI9vkHeKZiZUdhfj645ztYzzEO73baUuPAzjJsEsTOyTxOGQrz45CPFq8PDsK8ejjxdmlkR2UeF7MZcYpB+JvX1pP0KiYy4xTjkd2aWT3e5+sxV/t7T2yHrY11xmlHJ/saMQvVD+PQ7Zi7GjEz6uduxe2XzLXGaUcj+zSzA5KPPp4YXYs4us+Hi1ejh2PeJU5+nghdkmwAxN/8wwtXo5NiDd4n6yPtx61UzFXGqEcn+xoxDNjrjRCOR7ZJcGGeHbiY0M8t0gy8bEhnlskmejYJcUOSTxGy8qyKfEm72G3+K9CEQOFyS6J1wo2W9q4Djb13tjLiyyjaPFzbOrF2DGJv/3u4OopJkaQYUcl/tVJ8wXxO7NXl9PHIP7+/UH1hXnuJNikeKP3qfr4yvmV/SyNudrI5Hhkr8fPRCGeF3O5ccnxyY5LPEbSiLFjEr86coeRNDuzWyMlwxePqVDk2JGJZ8Zcb1RyfLJp8WbvGDsXN7s9Jj4G8RgtK8SOTTz26oXYsYlHi5dhb8x+EoN49PEy7PjE82Je7Yjk+GRbxBPe0cfHzN6c5yp88ThyJ8SOTTyO3Amx4xPPjHm145Hjkb01oyHE24skEw07OvHMDT3Epyf+Z/Txu7O3567tsCnv02zqjzGSRoAdoXjs1UuwYxTPjHm1Y5Hjkd2ZpTwK8ThWvzM7SvE4O7czu3tbghjE41j9zmy7eNK7TfzNN6z7hLmKR4vfmR2nePTxu7J7bkAjLV6dS3tycfX4T9XH7srXfz3bv3p8cvtyv1neLFGfzOnxUNirl2WPIL76fvXooPq6ebY/f3xysxTfLG+WzJdLIH4k9hjij9XU8o3sqleuvmvx9fJmSX0ojmzyEC/K7rvVmLT442o7vxLftPi69TfLdYu3dtcQL8pmiKe9M8Rf7a379apH/++6d1dL6uXNErWvRruHeFG2d/HddPtyS+/eK776S3nyf9/ZPjGYVzsGOR7ZvTeV9ClezTm92bK7Szjiq8/xN88vrvA5fiB7dPHD0zlyV4nHkbuh7BHES02D19ficeRuILv/9sExiMeRu53YHPEW71OJ58W82uHL8cmOVzyuwNmFbbhRfAzi79+zzv2YVzt4OT7ZEYvXg6hwseUg9pjiy1JUPDPm1Q5ejke2wbsX8WW5NA/xk7NHEl+2o8TPf//4H39YLH5SB/EZx2r7xbemLT+bvT6tl53N1KPVU4jvZ5u8b7Jt3gds6udPFze1+J8OFv87UHxr2vLrt5fVV/Xg4dfT9lOID0J8a+du/kKLv3lmv1ekSfx62vIvh4u7D+fVsrsff5i9Wz+dVWHTc0rJelex6/+mX/zzi1t1aq36yeUYpy3/crR4+KRMX785r56snqqY/14Db5Ue2cYGP0aLv/9+7/GfD4536OPX05avmrjK9eHGU/Nqhy3HJ3s68cNi3KtfderXh6r5o4+3sJMR3+zG3328VHv1hwvs1dNss/cNttX7VOKvcORuGDty8bfWq64gvo9dlqOJlwrOzgmwyxHFe9rUz1lHAHhF2gPxdvYY4nFT4aFsynsE4tnhFWlPOuKZbLt3iI+KHb/4+ZOLuf3AH6tIRlIRT3r3I74oRMVXH+eqL9xi1JE9vviiWJoXEv/qpGrzEO/Gpr1Liy/aqcXXkyDc/P5ZMy3C4z+zjsV0LsR4dHCFTb0be1zxnU391dPK2/7N84v79wfVx3HmQTjs3O3OZotneB9yWraeBKG5FuN4X32H+FHYFu/exV/VB90a8WjxGYmvpyDeb8QP7uMh3plt8+5ffCuqxfPOt0D8ruygxKtBr7wLLnEAZ1d2UOL5wQGcHdlW72s2x/t0o2VxAMeNzRdfiIiXCg7g7Ma2e1+y1YE2N7ZeMIp4XqxFMgPxJFsv8BOI34nN8B7Lph5X4LiwncQ7spcLxhDfGjQJ8Rx2MuLXgyYhnsHmeF/18Y7s1YIxxLcGTUI8g52M+NagSYi3s1ne4xDPi7VIZnISz/QO8TGwIX6rSG4iF8/zDvGMIskEx3YRz/UO8eGzmd7jEI/z8Xy2i3i29+mO3OF8PJPN9R6HeJyPZ7OTEo/z8Xy2i3i+d+zchc5me4d4RpFkwmK7iHfwPol4zIjBZ/O9RyC+ynF9/3icj7eyExPfnInH+Xg720W8i/epzsd/X7d43HfOxnbwHoX45r5zti09xKcnnheiSJca4xXv4t2ph5+2j7fGvNoByfHJTk487jvHipv3Hdfbi/aB953bHrg3NGKgkdml/S3rFPa3tCM2KtJJPDPmv9dwWiVaPB2Id2eXLuxi1/WWNq6D24i7sxMUjwM4jJQu7GLn9R5FPA7ZMpKieLR4e0ondiTi0cfb4yS+cGN/xl59uOwkxd++tJ6gUTGvdiByPLJLJ3Ys4usbzz2yHrY1r3YYcnyyncQXbuzPfeyRxC9UP49Lr4wpndgRiVeT4FjnxDSvdhByfLKdxBdu7M+97FHEo4+3JVHxzc1l0eKNKZ3YMYlXmaOPN8VJfOHG/tzP9qK9K/7mGVq8OaUTOyLxty+tR+1UzKsdgByfbCfxy0uuYhDPjHm1A5Djkb28AAPiO5lejk82xBszvRyfbCfxq4trId5eJJnJ2atL7RIUj5E0RJzEr6+mj0G8vhADo2X7sr62Nj3xuPSKSMrim8aOFt8bJ/GtcVMxiGfOiWFe7anleGS3RlGkJ54Z82pDvA7EOxVJZlp2e9iUnd0eIRuFeFxla0ra4nFdvSkb4ySt7I0h8TGIx8c5UxIXjxZvSuLi0ccbsjki3sbenPwkCvG8mFcb4lXiE48+vj9bU2BY2FuzHYUvfnXcDn38VhIXj+nOTElePDPm1U5T/PZkRzR7e147iLcXSQbiJQPxdnZndjOI7yRB8WXpJr4zgynE24skMw27hPh1zKsN8d0piyHeXiSZyTb1TmyIH1IkmYlavCMb4ocUSSYK8T2T00O8vUgyk7B7J6qGeOkiyUzB7p+g3MzuuxtFbOLPZq9P1c+HX2azt5fVU/08J/GGiemTFn/99rL6Ug/eVX8ERw+/nq5fM692WuJNNyRIWvyXw8Xdh/Plk6O7H3+YvVMPZ1U8rUtwKV1/ofCxFn5iFn+0ePikxVeN/vrNuVrUxPz3mlSLN96BxMjuveFUvC3+7J32f5iVePOdZ5IWv+rjH3450tLzavHEHYdM7P47zEUmvtmrv/t4eaZ69UO1V79s8BBvWJ6GeCLm1U5HPHWLMQPbcEtJiLcXSWZUNnlrOYiXLpLMmGz6loIQL10kmRHZlltJ9rNNNw+GeHuRZCBeMhDfw7bdO7aXbbxbOMTbiyQzGtt6z2CIly6SzFhs+72iIV66SDIjsRn3CO9jG71DPKNIMhAvGYjfYjO8Q7x4kWRGYXO897HN3iGeUSSZMdgs7112UUD8TkWSCVd8AfGRi+d5h3jxIsn4ZzO9923qrWxuIH58Ntd7t8Xb2exA/OhstvdtNu0d4hlFkoF4yUD8ks33vsW2eId4RpFk/LIdvG+ybd4hnlEkGa9sF+8bbKt3iGcUScYn28l7m233DvGMIsmEKJ7hHeIZRZLxyC4HsjneIZ5RJBl/7HIoG+KFiiTjjV0OZbO8QzyjSDLBied5h3hGkWR8scuBbKZ3iGcUScYTuxzI5nqHeEaRZPywy4FstneIZxRJxgu7HMjme4d4RpFk5NllCfFO8VYkGXF2a2JqV7aDd4hnFEkmIPEu3iGeUSQZL5v6QWwn7xDPKJKMNLs9Eb0Tuxh1vaWN6+QrfuOEnAu7GHe9pY3rZCt+80SsA7sYeb2ljevkKn7rBDzEs+KtSDKC7M59ZvjswsbuBOLtRZKRY3evt2GzCxu7G4i3F0lGjN1znRWXXdjYPYF4e5FkpNh919cx2YWN3ReItxdJRojde10lj708cAPx0kWSEWH33D6QzV4dsIN46SLJSLBNl1FDPCtfhSIG4rLLXYgFzRZKhy1tXCerFm8eNsFgt87MZNvivRVJZle2oXtnsttn5CBeukgyO7LJUVJW9saZWIiXLpLMbmx6dJyNvXkGHuKliySzE9syKtLC3rryAuKliySzA5vq3jlsiG/irUgyw9n2QdAEuyg6l1pBvHSRZAazGYPfzey+yQshXrpIMkPZnEkPIJ4Vb0WSGchmTXZBijezWYF4e5FkBrGtu3U0u3+uUoiXLpLMEDZ3bpt+tmmKWoiXLpLMADZ7TqM+tnlmYoiXLpKMO5s/l1WXTU1IDfHSRZJxYquBsA5zmG2zyXnIIV68SDIu7NZ4yCFsy+A4iJcuksxo4unm/hni5Ysk48B29d5mW7VDvHyRZNjsWvpANkM7xMsXSYbJ1m19EJulHeLliyTDYq828QPYTO0QL18kGQa71bO7s/nzXEC8dJFkbOzNHTpXNru5D2C7BOId2du78W5sF+0QL18kGYrd/fTmwi6KyfdNzGxp4zpJiO/70M5nq9YO8ax4K5KMid1/rIbDVsqbjTzEs+KtSDK9bOMhOga7WF9WBfGseCuSTA+bODDLFG9mE4F46SLJdNjk8Xgbuyjal1FCPCveiiSzxbachiHZnSsoIZ4Vb0WSWbJr49azb2Z233WzEM+KtyLJaHZZsk669rP7rpJvsZmBeOkiybTED2MbpLfYzEC8dJFkvmrpvGssttmE9c8Qz4y3Iqk4XlXTZps28OtAPCveijSllj6QbZWuAvGseCuyL6uW7sTWtlnWXdkQL17kdjY27y7sotg8QGMLxLPirch2On26A9tJuiP7M8TLF7lU3bsjx2CvG7qbd4jnxVeR+tPagPlmu1v2UeX4ZEsb1wlJvOWY3JK94dfYl0M8nRDEl+VSOflJfXXte7Mpt+y9QTydScWXljbew2bvrkM8ndHEb/jVxl2ui1sL5+23QTydscQvN+UbbbwD2nJatH2HLMcnW9q4joh46h6tZTuWIldNund7HrAcn2xp4zpm8Wez16etB6unXfFlUSyVlp3oF3r75aI/fv4ByQTMHlv89dvL6mv1YPW0R3zlfZnWcGNGbJt60X9AMgGzxxb/5XBx9+F89WD1dFZl6629TrfTswiZMGbxR4uHT+erB6unKtt/lFFcrRore3TxhhbfJ16sSDKZsscW79DHyxVJJlP22OKb3fi7j5f2vXq5Islkyh5dPBFvRZLJlC1tXAfiQ2dLG9eB+NDZ0sZ1ID50trRxHYgPnS1tXAfiQ2dLG9eB+NDZ0sZ1ID50trRxHYgPnS1tXAfiQ2dLG9eB+NDZ0sZ1ID50trRxHYgPnS1tXAfiQ2dLG9eB+NDZ0sZ1BomXyvbFe2D7ZbcD8Rmx24H4jNjtQHxG7HYmFY9MF4jPNBCfaSA+00B8phlb/Obg64dfZrO3ashGa7SGFFtTz0TQW+wvaujoofh6N6PUugNYfGRk8dsDs95VFR49/CpS4ha7oW4M/RJjVw8e/nkpvd6L69mb874haz4ysvitoZj1oqO7H3+YvRNnN9SNwZ5i7OrBb6cL6fV++JcakNwzSNVHxha/Ofi6elA1+uvq77x6LsxuqBvDu8XY9WqLr/ei/tkzLN1Hpm7xZ7rJXB/KsxXVV4v/TW/lJddbi0+yxW/3w7+oBqP+8QRazvb+Q0311MerUcTi692IT7OP3xp8fbbaO9694fQM7FZUyb36Nfs/f28Wyq53s3VPcq8eCSUQn2kgPtNAfKaB+EwTn/ibb09sb7n/fu8F9eq++/910C+FnCTF02+BeJWYxF/t7T0+qaz+aW+vsnDzTP24+Z8/Pj65faleUKkfVd8eHdSqbr45WFw9uWheX771d3/c1yj9G9Wb63fcPL9Y3L8/2Hy3epv+paQSkfjbVyeL+dNK+Ita5ncHqmXfPKuEHL9QL6gc1681LX5eLa3+NKofeql+69XevkYtmpZcvVa/49/vK+Tzi4bWBje/NGXt8olJfKV60WzH9ba88qceqReUyuZvo3rWvFw5/OmvT1UTXi9VDyvXGrVY9gr6HepP5YWmtcD6l6ap2lciEq827o8O1uKP1ea69vNyb0+90misTC9t/vzqH9/+3DjUS5tf3NeoRf3X0fq95/+ut/SK1gIvfympxCS+it6OV//dvtyvN/W6GTfZaPGL47/84f79X58uui1eoxZbLf7+/d+eX2haC4wWP22UqbX4+sc3ujW+0Bo3+viqX256+fbSprvWqEXTx1cvaMJcfQzcene1GH38tDnWe/XNf/M9tatd+2n2zFX0Hnkjvt6n13vly6XVR3y1g37ct1ff/IZe0gbrX0oqMYlHBAPxmQbiMw3EZxqIzzQQn2kgPtNAfKaB+EwD8Znm/wFphPscawauiQAAAABJRU5ErkJggg==" alt="plot of chunk unnamed-chunk-5"/> 
+The plot confirms my hypothesis, as we see in Russia much higher share of words would be needed to cover the same % of text. Major explanations would be:</p>
+
+<ul>
+<li>in Russian adjectives ending change upon gender and number, while in English it would be the same word in all cases</li>
+<li>many verbs in English change meaning through additions while verb stays the same, while in Russian through preposition,thus, creating different words (e.g. fall+(about/into/apart/away/back/in) would be all different words in Russian).</li>
+</ul>
+
+<p>##How do you evaluate how many of the words come from foreign languages?</p>
+
+<p>Ideally you would need to load the dictionary of foreign words and do the comparison.  However, for the sake of memory I would use a few simple features of Russian words which come from foreign language:</p>
+
+<ul>
+<li>words starting with letters &ldquo;а&rdquo;,&ldquo;ф&rdquo;,&ldquo;ге&rdquo;,&ldquo;ке&rdquo;,&ldquo;дж&rdquo; (<sup>а|<sup>ф|<sup>ге|<sup>ке|<sup>дж)</sup></sup></sup></sup></sup></li>
+<li>words containing syllables &ldquo;кю|пю|бю|вю|кю|мю|ау|ао|ео|еа|еи|ион&rdquo; or letter &ldquo;э&rdquo; (exept &ldquo;этот&rdquo;/this)</li>
+<li>words ending with нг|изм</li>
+<li>words with double consonants except for double &ldquo;н&rdquo; (common in adjectives) and double &ldquo;c&rdquo; caused by preposition (&ldquo;рас|вос|под&rdquo;)</li>
+</ul>
+
+<pre><code class="r">foreign&lt;-unifreq[(grep(&quot;^а|^ф|^ге|^ке|^дж|кю|пю|бю|вю|кю|мю|ау|ао|ео|еа|еи|э[^это][^эти]|нг$|изм$|ион&quot;,unifreq$Terms)),]
+consonant&lt;-strsplit(&quot;бвгджзйклмнпрстфхцчшщ&quot;,split=&quot;&quot;)[[1]]
+double&lt;-unifreq[grep(paste(paste(consonant[-11],&quot;+{2}&quot;,sep=&quot;&quot;),collapse=&quot;|&quot;),unifreq$Terms),]
+double&lt;-double[-grep(&quot;^рас|^вос|^под&quot;,double$Terms),]
+foreign&lt;-rbind(foreign,double)
+foreign&lt;-foreign[order(foreign$Terms),]
+foreign&lt;-foreign[unique(foreign$Terms),]
+head(foreign$Terms,10)
+</code></pre>
+
+<pre><code>##  [1] “аль-матджуру-ррабих”  “и’лямуль-мууаккъи’ин” «парус-бюджет»        
+##  [4] аббаса                 аббаса                 автомобильной         
+##  [7] автономия              авторов                авторских             
+## [10] агентов               
+## 36595 Levels: -”наверное -01-14-16 -1100 -150 -1727гг -1986гг ... &lt;U+064A&gt;&lt;U+064F&gt;&lt;U+0648&gt;&lt;U+064E&gt;&lt;U+062D&gt;&lt;U+0651&gt;&lt;U+0650&gt;&lt;U+062F&gt;&lt;U+064F&gt;&lt;U+0648&gt;&lt;U+0627&gt;
+</code></pre>
+
+<p>I have done review of &ldquo;foreign&rdquo; dataframe to make sure that the majority of words there are words borrowed from foreign language but I do not provide the full list of &gt;2Ks words here.</p>
+
+<p>Overall, I get the estimation of foreign words share of ~9%.  This is in line with general estimation by linguists that the share foreign words in Russian is within 20%.</p>
+
+<pre><code class="r">nrow(foreign)/nrow(unifreq)
+</code></pre>
+
+<pre><code>## [1] 0.0919
+</code></pre>
+
+</body>
+
+</html>
