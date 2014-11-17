@@ -4,6 +4,7 @@ author: "Veronika Nuretdinova"
 date: "Sunday, November 16, 2014"
 output: html_document
 ---
+Attention! Rpubs document link: http://rpubs.com/Nikotino/42194
 
 1. Read the file. Since I want to make a few comparisons between laguages I also add English blogs file. 
 All further analysis will be done based on blogs files, for news and twitter files operations would be similar.
@@ -141,16 +142,16 @@ The plot confirms my hypothesis, as we see in Russia much higher share of words 
 
 Ideally you would need to load the dictionary of foreign words and do the comparison.  However, for the sake of memory I would use a few simple features of Russian words which come from foreign language:
 
-- words starting with letters "à","ô","ãå","êå","äæ" (^à|^ô|^ãå|^êå|^äæ)
-- words containing syllables "êþ|ïþ|áþ|âþ|êþ|ìþ|àó|àî|åî|åà|åè|èîí" or letter "ý" (exept "ýòîò"/this)
-- words ending with íã|èçì
-- words with double consonants except for double "í" (common in adjectives) and double "c" caused by preposition ("ðàñ|âîñ|ïîä")
+- words starting with letters "Ã ","Ã´","Ã£Ã¥","ÃªÃ¥","Ã¤Ã¦" (^Ã |^Ã´|^Ã£Ã¥|^ÃªÃ¥|^Ã¤Ã¦)
+- words containing syllables "ÃªÃ¾|Ã¯Ã¾|Ã¡Ã¾|Ã¢Ã¾|ÃªÃ¾|Ã¬Ã¾|Ã Ã³|Ã Ã®|Ã¥Ã®|Ã¥Ã |Ã¥Ã¨|Ã¨Ã®Ã­" or letter "Ã½" (exept "Ã½Ã²Ã®Ã²"/this)
+- words ending with Ã­Ã£|Ã¨Ã§Ã¬
+- words with double consonants except for double "Ã­" (common in adjectives) and double "c" caused by preposition ("Ã°Ã Ã±|Ã¢Ã®Ã±|Ã¯Ã®Ã¤")
 
 ```{r}
-foreign<-unifreq[(grep("^à|^ô|^ãå|^êå|^äæ|êþ|ïþ|áþ|âþ|êþ|ìþ|àó|àî|åî|åà|åè|ý[^ýòî][^ýòè]|íã$|èçì$|èîí",unifreq$Terms)),]
-consonant<-strsplit("áâãäæçéêëìíïðñòôõö÷øù",split="")[[1]]
+foreign<-unifreq[(grep("^Ã |^Ã´|^Ã£Ã¥|^ÃªÃ¥|^Ã¤Ã¦|ÃªÃ¾|Ã¯Ã¾|Ã¡Ã¾|Ã¢Ã¾|ÃªÃ¾|Ã¬Ã¾|Ã Ã³|Ã Ã®|Ã¥Ã®|Ã¥Ã |Ã¥Ã¨|Ã½[^Ã½Ã²Ã®][^Ã½Ã²Ã¨]|Ã­Ã£$|Ã¨Ã§Ã¬$|Ã¨Ã®Ã­",unifreq$Terms)),]
+consonant<-strsplit("Ã¡Ã¢Ã£Ã¤Ã¦Ã§Ã©ÃªÃ«Ã¬Ã­Ã¯Ã°Ã±Ã²Ã´ÃµÃ¶Ã·Ã¸Ã¹",split="")[[1]]
 double<-unifreq[grep(paste(paste(consonant[-11],"+{2}",sep=""),collapse="|"),unifreq$Terms),]
-double<-double[-grep("^ðàñ|^âîñ|^ïîä",double$Terms),]
+double<-double[-grep("^Ã°Ã Ã±|^Ã¢Ã®Ã±|^Ã¯Ã®Ã¤",double$Terms),]
 foreign<-rbind(foreign,double)
 foreign<-foreign[order(foreign$Terms),]
 foreign<-foreign[unique(foreign$Terms),]
